@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gcc -o client client.c
-gcc -o server server.c
+gcc -o client_run client.c
+gcc -o server_run server.c

@@ -15,6 +15,7 @@ void printSocketInfo(const int socket) {
 }
 
 int main() {
+  const int PORT = 1234;
   //创建套接字
   int serv_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
@@ -23,8 +24,15 @@ int main() {
   memset(&serv_addr, 0, sizeof(serv_addr)); //每个字节都用0填充
   serv_addr.sin_family = AF_INET;           //使用IPv4地址
   serv_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); //具体的IP地址
-  serv_addr.sin_port = htons(1234);                   //端口
-  bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
+  serv_addr.sin_port = htons(PORT);                   //端口
+  int bindResult =
+      bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr));
+
+  if (bindResult == -1) {
+    printf("server start bind port:%d result:%d ,port locked!\n", PORT,
+           bindResult);
+    return 0;
+  }
 
   //接收客户端请求
   struct sockaddr_in clnt_addr;
