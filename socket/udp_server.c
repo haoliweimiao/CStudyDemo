@@ -38,9 +38,9 @@ int main() {
     recvfrom(serverSocket, readBuffer, 1024, 0, (struct sockaddr *)&clientAddr,
              (socklen_t *)&clientAddrSize);
     printf("read message from client:%s \n", readBuffer);
+    memset(readBuffer, '\0', 1);
     sendto(serverSocket, sendBuffer, 1024, 0, (struct sockaddr *)&clientAddr,
            clientAddrSize);
-    memset(readBuffer, '\0', 1);
   }
 
   close(serverSocket);
