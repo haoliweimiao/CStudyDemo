@@ -1,3 +1,11 @@
 .history/*
 .vscode/*
 *_run
+*.db
+*/CMakeFiles
+CMakeCache.txt
+*.cmake
+Makefile
+*.a
+*.dylib
+*Demo
